@@ -1,0 +1,398 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+*{
+    margin: 0;
+    padding: 0%;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container{
+  width: 100%;
+  height: 100vh;
+  background-image: url(../Img/21.png);
+  background-position: center;
+  background-size: cover;
+  padding-left: 8%;
+  padding-right: 8%;
+  box-sizing: border-box;
+
+}
+
+.navbar{
+  height: 18%;
+  display: flex;
+  align-items: center;
+  position: fixed; /* Set the navbar to fixed position */
+  top: 0; /* Position the navbar at the top of the page */
+  width: 90%; /* Full width */
+  background-color: #e7e7e7;
+  padding-right: 10%;
+  padding-left: 4%;
+  
+}
+
+.logo{
+  width: 200px;
+  cursor: pointer;
+}
+nav{
+  flex: 1;
+  text-align: right;
+  position: sticky;
+}
+
+nav ul li {
+  list-style: none;
+  /* same line*/
+  display: inline-block;
+  margin-left: 30px;
+}
+nav ul li a{
+  text-decoration: none;
+  color: rgb(0, 0, 0);
+  font-size: 15px;
+}
+
+nav li:hover a {
+  color: #d6382d;
+}
+
+nav li a.active {
+  color: #d6382d;
+}
+
+
+
+/*Donate now*/
+.btn {
+  border: 2px solid black;
+  background-color: #03a4ed;
+  color: white;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 60px;
+}
+
+/* Red */
+.donate {
+  border-color:#03a4ed;
+  color: #03a4ed;
+}
+
+.donate:hover {
+  background: #f44336;
+  border-color: #f44336;
+  color: #f44336;
+}
+
+.default {
+  border-color: #f44336;
+  color: black;
+}
+
+.default:hover {
+  background: #e7e7e7;
+}
+
+
+.row{
+  display: flex;
+  height: 88%;
+  align-items: center;
+}
+
+.col{
+  flex-basis: 50%;
+}
+
+h2{
+  font-size: 50px;
+}
+.up{
+  color: #d6382d;
+  font-size: 15px;
+  line-height: 15px;
+}
+
+.image{
+  align-items: right;
+  top: 100px;
+  width: 800px;
+  height: 670px;
+}
+
+.aboutus{
+  align-items: right;
+  top: 100px;
+  width: 480px;
+  height: 550px;
+}
+
+.grid{
+  padding-left: 2%;
+  display: grid;
+  width: 98%;
+  grid-gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(340px, 90px));
+  align-items: start;
+}
+
+.grid-item{
+  background-color: white;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.grid-item:hover {
+  transform: translateY(-0.5%);
+  box-shadow: 0 4rem 8rem rgba(0,0,0,0.5);
+}
+
+.card-img{
+  display: block;
+  width: 100%;
+  height: 20rem;
+  object-fit: cover;
+}
+
+.card-content{
+  padding: 1rem;
+}
+
+.card-header{
+  font-size: 30px;
+  font-weight: 300;
+  color: #0d0d0d;
+  margin-bottom: 22px;
+}
+
+.card-text{
+  font-size: 0.2rem;
+  letter-spacing: 0.1rem;
+  line-height: 1.7;
+  color: #3d3d3d;
+  margin-bottom: 2.5rem;
+}
+
+
+.footer-distributed{
+	background: #ffcce8a4;
+	box-shadow: 0 1px 1px 0 rgba(0, 0, 0, 0.12);
+	box-sizing: border-box;
+	width: 100%;
+	text-align: left;
+	font: bold 16px sans-serif;
+	padding: 55px 50px;
+}
+
+.footer-distributed .footer-left,
+.footer-distributed .footer-center,
+.footer-distributed .footer-right{
+	display: inline-block;
+	vertical-align: top;
+}
+
+/* Footer left */
+
+.footer-distributed .footer-left{
+	width: 40%;
+}
+
+/* The company logo */
+
+.footer-distributed h3{
+	color:  #000000;
+	font: normal 36px 'Open Sans', cursive;
+	margin: 0;
+}
+
+.footer-distributed h3 span{
+	color:  lightseagreen;
+}
+
+/* Footer links */
+
+.footer-distributed .footer-links{
+	color:  #da392d;
+	margin: 20px 0 12px;
+	padding: 0;
+}
+
+.footer-distributed .footer-links a{
+	display:inline-block;
+	line-height: 1.8;
+  font-weight:400;
+	text-decoration: none;
+	color:  inherit;
+}
+
+.footer-distributed .footer-company-name{
+	color:  #222;
+	font-size: 14px;
+	font-weight: normal;
+	margin: 0;
+}
+
+/* Footer Center */
+
+.footer-distributed .footer-center{
+	width: 25%;
+}
+
+.footer-distributed .footer-center i{
+	background-color:  #33383b;
+	color: #ffffff;
+	font-size: 25px;
+	width: 38px;
+	height: 38px;
+	border-radius: 50%;
+	text-align: center;
+	line-height: 42px;
+	margin: 10px 15px;
+	vertical-align: middle;
+}
+
+.footer-distributed .footer-center i.fa-envelope{
+	font-size: 17px;
+	line-height: 38px;
+}
+
+.footer-distributed .footer-center p{
+	display: inline-block;
+	color: #000000;
+  font-weight:400;
+	vertical-align: middle;
+	margin:0;
+}
+
+.footer-distributed .footer-center p span{
+	display:block;
+	font-weight: normal;
+	font-size:14px;
+	line-height:2;
+}
+
+.footer-distributed .footer-center p a{
+	color:  lightseagreen;
+	text-decoration: none;;
+}
+
+.footer-distributed .footer-links a:before {
+  content: "|";
+  font-weight:300;
+  font-size: 20px;
+  left: 0;
+  color: rgb(0, 0, 0);
+  display: inline-block;
+  padding-right: 5px;
+}
+
+.footer-distributed .footer-links .link-1:before {
+  content: none;
+}
+.footer-distributed .footer-icons{
+	margin-top: 25px;
+}
+
+.footer-distributed .footer-icons a{
+	display: inline-flexbox;
+	width: 35px;
+	height: 35px;
+	cursor: pointer;
+	background-color:  #ffcce844;
+	border-radius: 10px;
+
+	font-size: 20px;
+	color: #ffffff;
+	text-align: center;
+	line-height: 35px;
+
+	margin-right: 10px;
+	margin-bottom: 10px;
+}
+
+/* Footer Right */
+
+.footer-distributed .footer-right{
+	width: 30%;
+}
+
+.footer-distributed .footer-company-about{
+	line-height: 20px;
+	color:  #92999f;
+	font-size: 13px;
+	font-weight: normal;
+	margin: 0;
+}
+
+.footer-distributed .footer-company-about span{
+	display: block;
+	color:  #000000;
+	font-size: 14px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+
+
+/* If you don't want the footer to be responsive, remove these media queries */
+
+@media (max-width: 880px) {
+
+	.footer-distributed{
+		font: bold 14px sans-serif;
+	}
+
+	.footer-distributed .footer-left,
+	.footer-distributed .footer-center,
+	.footer-distributed .footer-right{
+		display: block;
+		width: 100%;
+		margin-bottom: 10px;
+		text-align: center;
+	}
+
+	.footer-distributed .footer-center i{
+		margin-left: 0;
+	}
+
+}
+
+
+input[type=text], select, textarea {
+  width: 100%;
+  height: fit-content;
+  padding: 12px;
+  border: 1.5px solid #f44336;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 5px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: #03a4ed;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #f44336;
+}
+
+.containeeer {
+  width: 490px;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+
+
