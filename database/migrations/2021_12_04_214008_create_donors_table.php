@@ -16,14 +16,14 @@ class CreateDonorsTable extends Migration
         Schema::create('donors', function (Blueprint $table) {
             $table->id();
             $table->string('full_name');
-            $table->integer('id_number');
+            $table->integer('id_number')->unique();
             $table->string('email')->unique();
             $table->integer('phone_number');
             $table->string('gender');
             $table->date('date_of_birth');
             $table->string('blood_group', 5);
             $table->date('last_donation_date');
-            $table->string('diseases');
+            $table->text('diseases');
             $table->timestamps();
         });
     }
