@@ -1,4 +1,3 @@
-
 <!doctype html>
 <html lang="en"  style="scroll-behavior: smooth;">
 
@@ -11,9 +10,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" type="text/css" href="{{asset('css/Styles/style.css')}}" />
+
+
     <link rel="stylesheet" type="text/css" href="{{asset('css/Styles/ss.css')}}" />
 
+
+
+    @yield('css')
 </head>
 <body>
 <div class="header">
@@ -21,11 +24,12 @@
 </div>
 <div class="nav">
     <ul>
+
         <li><a href="{{ route('logout') }}" onclick="event.preventDefault();
 
                                                      document.getElementById('logout-form').submit();">LogOut</a>
 
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none" style="display: none;">
                 @csrf
             </form>
         </li>
