@@ -6,14 +6,26 @@
 
     <table id="customers">
         <tr>
-            <th>ID</th>
+
             <th>Full Name</th>
             <th>Username</th>
             <th>Email</th>
             <th>Phone Number</th>
-            <th>Password</th>
+
 
         </tr>
+
+        @foreach($users as $user)
+            <tr>
+
+                <td>{{ $user->full_name }}</td>
+                <td>{{ $user->username }}</td>
+                <td>{{ $user->email }}</td>
+                <td>{{ $user->phone_number }}</td>
+
+
+            </tr>
+        @endforeach
 
     </table>
 @endsection

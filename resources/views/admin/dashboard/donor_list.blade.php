@@ -6,7 +6,7 @@
 
     <table id="customers">
         <tr>
-            <th>ID</th>
+
             <th>Full Name</th>
             <th>ID Number</th>
             <th>Email</th>
@@ -17,6 +17,23 @@
             <th>Last Donated Date</th>
             <th>Diseases</th>
         </tr>
+
+        @foreach($donors as $donor)
+            <tr>
+
+                <td>{{ $donor->full_name }}</td>
+                <td>{{ $donor->id_number }}</td>
+                <td>{{ $donor->email }}</td>
+                <td>{{ $donor->phone_number }}</td>
+                <td>{{ $donor->gender }}</td>
+                <td>{{ $donor->date_of_birth }}</td>
+                <td>{{ $donor->blood_group }}</td>
+                <td>{{ $donor->last_donation_date }}</td>
+                <td>{{ $donor->diseases }}</td>
+            </tr>
+
+        @endforeach
+
 
     </table>
 
