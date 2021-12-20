@@ -25,7 +25,7 @@
             <li><a href="#section4">OUR GALLERY</a></li>
             <li><a href="#section5">CONTACT US</a></li>
             <li>
-                <button class="btn donate"> <a style="color: white;" href="{{ route('login') }}" target="_blank">DONATE NOW</a></button>
+                <button class="btn donate"> <a style="color: white;" href="{{ route('login') }}">DONATE NOW</a></button>
             </li>
         </ul>
     </nav>
