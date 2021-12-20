@@ -33,7 +33,7 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
             @enderror
-            <input type="number" name="phone_number" class="@error('phone_number') is-invalid @enderror" placeholder="Phone Number" />
+            <input type="text" name="phone_number" class="@error('phone_number') is-invalid @enderror" placeholder="Phone Number" />
             @error('phone_number')
             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
