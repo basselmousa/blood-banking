@@ -31,9 +31,15 @@ class HomeController extends Controller
         return view('home');
     }
 
-    public function search()
+    public function search(Request $request)
     {
-        return view('search_blood');
+        if ($request->method() == 'GET'){
+            $bloods = [];
+        }
+        else{
+            $bloods = Donor::all()->where('blood_group' , '=', $request->blood);
+        }
+        return view('search_blood', compact('bloods'));
     }
 
     public function add_donor(Request $request)

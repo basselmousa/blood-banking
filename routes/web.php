@@ -21,6 +21,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/search', [App\Http\Controllers\HomeController::class, 'search'])->name('search');
+Route::post('/search', [App\Http\Controllers\HomeController::class, 'search'])->name('search.post');
 
 Route::post('/add/donor', [\App\Http\Controllers\HomeController::class, 'add_donor'])->name('add-donor');
 Route::post('/add/patient', [\App\Http\Controllers\HomeController::class, 'add_patient'])->name('add-patient');
@@ -39,5 +40,5 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.'], function (){
     Route::post('/add/donor', [\App\Http\Controllers\AdminController::class, 'add_donor'])->name('add.donor');
     Route::post('/add/patient', [\App\Http\Controllers\AdminController::class, 'add_patient'])->name('add.patient');
 
-
+    Route::delete('/delete',[\App\Http\Controllers\AdminController::class, 'delete_donor_or_patient_action'])->name('delete-patient-or-donor');
 });

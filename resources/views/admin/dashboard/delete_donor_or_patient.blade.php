@@ -6,17 +6,31 @@
     <h1 style="font-size: 20px; text-align: center;">Select Donor Or Patient</h1>
     <br>
 
-    <div class="custom-select" style="width:200px;">
-        <select name="from_model">
-            <option value="0">--Select--</option>
-            <option value="1">Donor</option>
-            <option value="2">Patient</option>
-        </select>
-    </div>
-    <form method="post" action="#" class="search-wrapper cf">
+
+    <form method="post" action="{{ route('admin.delete-patient-or-donor') }}" class="search-wrapper cf">
+
         @method('DELETE')
         @csrf
-        <input type="text" name="id_number" placeholder="Enter ID" required style="box-shadow: none">
+
+        <div class="custom-select @error('from_model') is-invalid @enderror" style="width:200px;">
+            <select name="from_model">
+                <option value="0">--Select--</option>
+                <option value="1">Donor</option>
+                <option value="2">Patient</option>
+            </select>
+            @error('from_model')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+            @enderror
+        </div>
+
+        <input type="text" name="id_number" class="@error('id_number') is-invalid @enderror" placeholder="Enter ID" required style="box-shadow: none">
+        @error('id_number')
+        <span class="invalid-feedback" role="alert">
+            <strong>{{ $message }}</strong>
+        </span>
+        @enderror
         <button type="submit">Delete</button>
     </form>
 

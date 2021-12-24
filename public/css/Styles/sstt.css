@@ -367,7 +367,12 @@ h2 {
     background: transparent;
     box-shadow: 0 4px 20px -2px #c0c0c0;
 }
-
+.custom-select {
+    position: absolute;
+    font-family: Arial;
+    text-align: center;
+    margin-left: -17%;
+}
 /* Form text input */
 
 .search-wrapper input {

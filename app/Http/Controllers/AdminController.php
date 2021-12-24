@@ -22,21 +22,21 @@ class AdminController extends Controller
     public function donor_list()
     {
         $donors = Donor::all();
-        return view('admin.dashboard.donor_list',compact('donors'));
+        return view('admin.dashboard.donor_list', compact('donors'));
 
     }
 
     public function patient_list()
     {
-        $patients = Patient::all()->where('type', '=','patient');
+        $patients = Patient::all()->where('type', '=', 'patient');
 
-        return view('admin.dashboard.patient_list',compact('patients'));
+        return view('admin.dashboard.patient_list', compact('patients'));
     }
 
     public function user_list()
     {
         $users = User::all();
-        return view('admin.dashboard.user_list',compact('users'));
+        return view('admin.dashboard.user_list', compact('users'));
     }
 
     public function add_donor_or_patient()
@@ -67,4 +67,23 @@ class AdminController extends Controller
         $this->addPatient($request, 'patient');
         return redirect()->route('admin.home');
     }
+
+    public function delete_donor_or_patient_action(Request $request)
+    {
+        $request->validate([
+            'id_number' => 'required',
+            'from_model' => 'required|not_in:0'
+        ]);
+
+        switch ($request->from_model) {
+            case '1':
+                Donor::where('id_number', '=', $request->id_number)->delete();
+                break;
+            case '2':
+                Patient::where('id_number', '=', $request->id_number)->delete();
+                break;
+        }
+        return redirect()->route('admin.home');
+    }
+
 }
