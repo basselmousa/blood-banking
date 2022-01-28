@@ -12,49 +12,54 @@
 <body>
 <div class="container" id="container">
     <div class="form-container sign-up-container">
-        <form method="post" action="{{ route('register') }}">
+        <form method="POST" action="{{ route('register') }}">
             @csrf
             <h1>Create Account</h1>
-            <input type="text" name="full_name" class="@error('full_name') is-invalid @enderror" placeholder="Full Name" />
+            <input type="text" name="full_name" value="{{ old('full_name') }}"
+                   class="@error('full_name') is-invalid @enderror" placeholder="Full Name" />
             @error('full_name')
             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
             @enderror
-            <input type="text" name="username" class="@error('username') is-invalid @enderror" placeholder="Username" />
+            <input type="text" name="username" value="{{ old('username') }}"
+                   class="@error('username') is-invalid @enderror" placeholder="Username" />
             @error('username')
             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
             @enderror
-            <input type="email" name="signup_email" class="@error('signup_email') is-invalid @enderror" placeholder="Email" />
+            <input type="email" name="signup_email" value="{{ old('signup_email') }}"
+                   class="@error('signup_email') is-invalid @enderror" placeholder="Email" />
             @error('signup_email')
             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
             @enderror
-            <input type="text" name="phone_number" class="@error('phone_number') is-invalid @enderror" placeholder="Phone Number" />
+            <input type="text" name="phone_number" value="{{ old('phone_number') }}"
+                   class="@error('phone_number') is-invalid @enderror" placeholder="Phone Number" />
             @error('phone_number')
             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
             @enderror
-            <input type="password" name="signup_password" class="@error('signup_password') is-invalid @enderror" placeholder="Password" />
+            <input type="password" name="signup_password"
+                   class="@error('signup_password') is-invalid @enderror" placeholder="Password" />
             @error('signup_password')
             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
             @enderror
-            <input type="password" name="password-confirmation" placeholder="Confirm Password" />
+            <input type="password" name="signup_password_confirmation" placeholder="Confirm Password" />
 
-            <button>Sign Up</button>
+            <button type="submit">Sign Up</button>
         </form>
     </div>
     <div class="form-container sign-in-container">
         <form method="post" action="{{ route('login') }}">
             @csrf
             <h1>Log In</h1>
-            <input type="text" name="email" class="@error('email') is-invalid @enderror" placeholder="Username" />
+            <input type="text" name="email" value="{{ old('email') }}" class="@error('email') is-invalid @enderror" placeholder="Username" />
             @error('email')
             <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -66,8 +71,10 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
             @enderror
-            <a href="#">Forgot your password?</a>
-            <button>Log In</button>
+            <a href="{{ route('password.request') }}">Forgot your password?</a>
+            <br>
+            <a href="{{ route('admin.login') }}">Are you admin?</a>
+            <button type="submit">Log In</button>
         </form>
     </div>
     <div class="overlay-container">

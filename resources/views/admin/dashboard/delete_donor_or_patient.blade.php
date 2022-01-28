@@ -7,12 +7,12 @@
     <br>
 
 
-    <form method="post" action="{{ route('admin.delete-patient-or-donor') }}" class="search-wrapper cf">
+    <form method="post" action="{{ route('admin.delete-patient-or-donor') }}" style="height: 150px" class="search-wrapper cf">
 
         @method('DELETE')
         @csrf
 
-        <div class="custom-select @error('from_model') is-invalid @enderror" style="width:200px;">
+        <div class="custom-select @error('from_model') is-invalid @enderror" style="width:200px;margin-bottom: 20px">
             <select name="from_model">
                 <option value="0">--Select--</option>
                 <option value="1">Donor</option>

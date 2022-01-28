@@ -6,6 +6,7 @@ namespace App\Http\Traits;
 
 use App\Models\Donor;
 use App\Models\Patient;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 
@@ -47,10 +48,13 @@ trait AddPatient
             'email' => ['required', 'unique:donors,email'],
             'phone_number' => ['required', 'unique:donors,phone_number'],
             'gender' => ['required','not_in:0'],
-            'birthday' => ['required'],
+            'country' => ['required','not_in:0'],
+            'city' => ['required','not_in:0'],
+            'birthday' => ['required','before:'. Carbon::today()->subYears(18)],
             'blood' => ['required','not_in:0'],
-            'date' => ['required','before:today'],
+            'date' => ['required','before:'.Carbon::today()->subMonths(6)],
             'diseases' => ['required'],
+            'share' => ['required']
         ]);
 
         Donor::create([
@@ -59,10 +63,13 @@ trait AddPatient
             'email' => $request->email,
             'phone_number' => $request->phone_number,
             'gender' => $request->gender,
+            'country' => $request->country,
+            'city' => $request->city,
             'date_of_birth' => $request->birthday,
             'blood_group' => $request->blood,
             'last_donation_date' => $request->date,
             'diseases' => $request->diseases,
+            'share' => $request->share
         ]);
     }
 }

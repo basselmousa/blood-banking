@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Traits\AddPatient;
+use App\Mail\ContactMe;
+use App\Mail\ContactUserForMe;
 use App\Models\Donor;
 use App\Models\Patient;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
@@ -18,7 +21,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth:web')->except('contact');
     }
 
     /**
@@ -33,11 +36,21 @@ class HomeController extends Controller
 
     public function search(Request $request)
     {
+
         if ($request->method() == 'GET'){
             $bloods = [];
         }
         else{
-            $bloods = Donor::all()->where('blood_group' , '=', $request->blood);
+            $request->validate([
+                'blood' => 'required',
+                'city' => 'required'
+            ]);
+            if ($request->city == 'all'){
+                $bloods = Donor::all()->where('blood_group' , '=', $request->blood);
+            }
+            else{
+                $bloods = Donor::all()->where('blood_group' , '=', $request->blood)->where('city', '=', $request->city);
+            }
         }
         return view('search_blood', compact('bloods'));
     }
@@ -59,6 +72,24 @@ class HomeController extends Controller
     {
         $this->addPatient($request,'patient');
         return redirect()->route('home');
+    }
+
+    public function contact(Request $request)
+    {
+        Mail::to(config('mail.from.address'))->send(new ContactMe($request->all()));
+        return redirect('/');
+    }
+
+
+    public function contact_user(Request $request, Donor $id)
+    {
+        Mail::to(config('mail.from.address'))->send(new ContactUserForMe($id));
+        return redirect()->route('home');
+    }
+
+    public function personal_information()
+    {
+        return view('personal_information');
     }
 
 }

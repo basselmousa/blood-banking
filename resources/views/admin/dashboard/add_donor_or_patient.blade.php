@@ -52,7 +52,19 @@
                             </span>
                             @enderror
                         </div>
-
+                        <label class="cooontainer">Share my number with patiens.
+                            <input type="radio" value="0" {{ old('share') ==  0 ? 'checked': '' }} name="share">
+                            <span class="checkmark @error('share') is-invalid @enderror"></span>
+                        </label>
+                        <label class="cooontainer"> Don't share my number with patiens.
+                            <input type="radio" value="1"  {{ old('share') ==  1 ? 'checked': '' }} name="share">
+                            <span class="checkmark @error('share') is-invalid @enderror"></span>
+                        </label>
+                        @error('share')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
                         <div class="input-block">
                             <label for="Gender">Gender</label>
                             <select style="width: 100%; background-color: #eef9fe; font-size: 16px;" id="Gender" class="@error('gender') is-invalid @enderror" name="gender">
@@ -79,7 +91,7 @@
 
                         <div class="input-block">
                             <label for="blood">Blood Group:</label>
-                            <select style="width: 100%; background-color: #eef9fe; font-size: 16px;" class="@error('blood') is-invalid @enderror" name="blood" id="blood" >
+                            <select style="width: 100%; background-color: #eef9fe; font-size: 16px; background-color: #eef9fe; font-size: 16px;" class="@error('blood') is-invalid @enderror" name="blood" id="blood" >
                                 <option value="">--Select Your Blood Group--</option>
                                 <option value="A+">A+</option>
                                 <option value="AB+">AB+</option>
@@ -107,7 +119,42 @@
                             @enderror
                         </div>
 
+                        <div class="input-block">
+                            <label for="Country">Country:</label>
+                            <select style="width: 100%; background-color: #eef9fe; font-size: 16px;" class="@error('country') is-invalid @enderror" name="country" id="Country">
+                                <option value="">--Your Country--</option>
+                                <option {{ old('country') == 'Jordan' ? 'selected' : '' }} value="Jordan">Jordan</option>
+                            </select>
+                            @error('country')
+                            <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                            @enderror
+                        </div>
 
+                        <div class="input-block">
+                            <label for="City">City:</label>
+                            <select style="width: 100%; background-color: #eef9fe; font-size: 16px;" class="@error('city') is-invalid @enderror" name="city" id="City">
+                                <option value="">--Your City--</option>
+                                <option {{ old('city') == 'Amman' ? 'selected' : '' }} value="Amman">Amman</option>
+                                <option {{ old('city') == 'Zarqaa' ? 'selected' : '' }} value="Zarqaa">Zarqaa</option>
+                                <option {{ old('city') == 'Mafraq' ? 'selected' : '' }} value="Mafraq">Mafraq</option>
+                                <option {{ old('city') == 'Irbid' ? 'selected' : '' }} value="Irbid">Irbid</option>
+                                <option {{ old('city') == 'Ajloun' ? 'selected' : '' }} value="Ajloun">Ajloun</option>
+                                <option {{ old('city') == 'Jerash' ? 'selected' : '' }} value="Jerash">Jerash</option>
+                                <option {{ old('city') == 'As-Salt' ? 'selected' : '' }} value="As-Salt">As-Salt</option>
+                                <option {{ old('city') == 'Madaba' ? 'selected' : '' }} value="Madaba">Madaba</option>
+                                <option {{ old('city') == 'Karak' ? 'selected' : '' }} value="Karak">Karak</option>
+                                <option {{ old('city') == 'Tafilah' ? 'selected' : '' }} value="Tafilah">Tafilah</option>
+                                <option {{ old('city') == "Ma'an" ? 'selected' : '' }} value="Ma'an">Ma'an</option>
+                                <option {{ old('city') == 'Aqaba' ? 'selected' : '' }} value="Aqaba">Aqaba</option>
+                            </select>
+                            @error('city')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
                         <div class="input-block">
                             <label for="Diseases">Suffering From Any Diseases?..</label> <br>
                             <textarea style="width: 100%; background-color: #eef9fe; font-size: 16px;" class="@error('diseases') is-invalid @enderror" name="diseases" placeholder="Write Them Here Please....." rows="6" ></textarea>

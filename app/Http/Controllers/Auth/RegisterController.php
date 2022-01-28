@@ -52,12 +52,18 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+
         return Validator::make($data, [
             'username' => ['required', 'string', 'max:255'],
             'full_name' => ['required', 'string', 'max:255'],
             'phone_number' => ['required', 'string', 'max:10'],
-            'signup_email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'signup_email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
             'signup_password' => ['required', 'string', 'min:8', 'confirmed'],
+        ],[
+            'signup_email.unique' => 'This email has already been taken.',
+            'signup_email.required' => 'The email field is required.',
+            'signup_password.required' => 'The  password field is required.',
+            'signup_password.confirmed' => 'The password confirmation does not match.',
         ]);
     }
 
@@ -80,8 +86,8 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-        $this->validator($request->all());
-
+//       dd($request->all());
+        $this->validator($request->all())->validate();
         event(new Registered($user = $this->create($request->all())));
 
         $this->guard()->login($user);

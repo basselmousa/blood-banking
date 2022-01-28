@@ -5,27 +5,32 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Life Share (LSBB)</title>
-    <link rel="shortcut icon" href="{{asset('img/icons/favicon1.png')}}" style="width: 10px; height: 16px;">
+    <link rel="shortcut icon" href="Img/icons/favicon1.png" style="width: 10px; height: 16px;">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="{{ asset('css/Styles/style.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{asset('css/Styles/style.css')}}" />
+
+    <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
 <!-- Navbar section -->
+<button onclick="topFunction()" id="myBtn" title="Go to top"><i class="fa fa-angle-double-up" style="font-size: 40px;"></i> </button>
+
 
 <div class="navbar">
-    <img src="{{ asset('img/logo2.png') }}" class="logo">
+    <img src="{{asset('img/logo2.png')}}" class="logo">
     <nav>
         <ul>
-            <li><a href="" class="active">HOME</a></li>
-            <li><a href="#section1">ABOUT US</a></li>
-            <li><a href="#section2">DONATION PROCESS</a></li>
-            <li><a href="#section4">OUR GALLERY</a></li>
-            <li><a href="#section5">CONTACT US</a></li>
+            <li><a href="">Home</a></li>
+            <li><a href="#section1">About Us</a></li>
+            <li><a href="#section2">Donation Process</a></li>
+            <li><a href="#section4">Our Gallery</a></li>
+            <li><a href="#section5">Contact Us</a></li>
             <li>
-                <button class="btn donate"> <a style="color: white;" href="{{ route('login') }}">DONATE NOW</a></button>
+                <button class="btn donate"> <a style="color: white;" href="{{ route('login') }}" target="_blank">DONATE NOW</a></button>
             </li>
         </ul>
     </nav>
@@ -35,7 +40,6 @@
 <div  class="container" id="section">
     <div class="row">
         <div class="col">
-            <p class="up">Welcome to our website</p>
             <h2>Donate Your<span style="color: #d6382d;"> Blood</span> <br> To Us, Save More <br> Life <span style="color: #03a4ed;">Together</span></h2>
             <br>
             <button class="btn donate"> <a style="color: white; text-decoration: none;" href="{{ route('login') }}" target="_blank">DONATE NOW</a></button>
@@ -43,7 +47,7 @@
         </div>
 
         <div class="col">
-            <img class="image" src="{{ asset('img/15.jpg') }}" alt="">
+            <img class="image" src="{{asset('img/15.jpg')}}" alt="">
         </div>
 
     </div>
@@ -53,11 +57,11 @@
 <br>
 <br>
 <!-- About us-->
-<section class="container" id="section1" style="background-image: url({{ asset('img/about.png') }});">
+<section class="container" id="section1" style="background-image: url({{asset('img/contact-dec.png')}});">
     <p style="font-size: 44px; text-align: center; color: #000;" > About Us</p>
     <div class="row">
         <div class="col">
-            <img class="aboutus" src="{{ asset('img/23.jpg') }}">
+            <img class="aboutus" src="{{asset('img/23.jpg')}}">
         </div>
 
         <div class="col">
@@ -67,14 +71,14 @@
         </div>
 
     </div>
-
+    </div>
 
 </section>
 
 
 <!-- Donation Process-->
 
-<section id="section2" >
+<section id="section2" style="background-image: url({{asset('img/21.png')}}); margin-left: 30px;">
     <p style="font-size: 44px; text-align: center; color: #000;" >Donation Process</p>
     <br>
     <br>
@@ -82,7 +86,7 @@
     <div class="grid">
         <div class="grid-item">
             <div class="card">
-                <img class="card-img" src="{{ asset('img/12.jfif') }}">
+                <img class="card-img" src="{{asset('img/12.jfif')}}">
 
                 <div class="card-content">
                     <h1 class="card-header">1. REGESTRATION</h1>
@@ -100,7 +104,7 @@
 
         <div class="grid-item">
             <div class="card">
-                <img class="card-img" src="{{ asset('img/25.jpg') }}">
+                <img class="card-img" src="{{asset('img/25.jpg')}}">
 
                 <div class="card-content">
                     <h1 class="card-header">2. SEEING</h1>
@@ -136,7 +140,7 @@
 
         <div class="grid-item">
             <div class="card">
-                <img class="card-img" src="{{ asset('img/7.jpg') }}">
+                <img class="card-img" src="{{asset('img/7.jpg')}}">
 
                 <div class="card-content">
                     <h1 class="card-header">4. SAVE LIFE</h1>
@@ -155,9 +159,85 @@
 </section>
 <br>
 <br>
+
+
 <!--image slider start-->
-<p style="font-size: 44px; text-align: center; color: #000;" id="section4" >Our Gallery</p>
+<section style="background-image: url({{asset('img/21.png')}});">
+    <p style="font-size: 44px; text-align: center; color: #000;" id="section4" >Our Gallery</p>
+    <br>
+
+    <div class="slideshow-container" style="text-align: center;">
+
+        <!-- Full-width images with number and caption text -->
+        <div class="mySlides fade">
+            <div class="numbertext">1 / 8</div>
+            <img src="{{asset('img/health1.jpg')}}" style="width:70%; height: 70%;">
+        </div>
+
+        <div class="mySlides fade">
+            <div class="numbertext">2 / 8</div>
+            <img src="{{asset('img/health2.jpg')}}" style="width:70%; height: 70%;">
+        </div>
+
+        <div class="mySlides fade">
+            <div class="numbertext">3 / 8</div>
+            <img src="{{asset('img/Health3.jpg')}}" style="width:70%; height: 70%;">
+        </div>
+
+        <div class="mySlides fade">
+            <div class="numbertext">4 / 8</div>
+            <img src="{{asset('img/why.jpg')}}" style="width:70%; height: 70%;">
+        </div>
+
+        <div class="mySlides fade">
+            <div class="numbertext">5 / 8</div>
+            <img src="{{asset('img/compatible.png')}}" style="width:70%; height: 70%;">
+        </div>
+
+        <div class="mySlides fade">
+            <div class="numbertext">6 / 8</div>
+            <img src="{{asset('img/why.jpg')}}" style="width:70%; height: 70%;">
+        </div>
+
+        <div class="mySlides fade">
+            <div class="numbertext">7 / 8</div>
+            <img src="{{asset('img/blog-benefits.jpg')}}" style="width:70%; height: 70%;">
+        </div>
+
+        <div class="mySlides fade">
+            <div class="numbertext">8 / 8</div>
+            <img src="{{asset('img/9.jpg')}}" style="width:70%; height: 70%;">
+        </div>
+
+
+
+        <!-- Next and previous buttons -->
+        <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+        <a class="next" onclick="plusSlides(1)">&#10095;</a>
+    </div>
+    <br>
+
+    <!-- The dots/circles -->
+    <div style="text-align:center">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+        <span class="dot" onclick="currentSlide(4)"></span>
+        <span class="dot" onclick="currentSlide(5)"></span>
+        <span class="dot" onclick="currentSlide(6)"></span>
+        <span class="dot" onclick="currentSlide(7)"></span>
+        <span class="dot" onclick="currentSlide(8)"></span>
+
+    </div>
+
+</section>
 <br>
+<br>
+<br>
+<br>
+
+
+
 
 
 <!--FOOTER-->
@@ -165,7 +245,7 @@
 
     <div class="footer-left">
 
-        <h3><img src="{{ asset('img/logo2.png') }}" width="250px" height="120px"></h3>
+        <h3><img src="{{asset('img/logo2.png')}}" width="40%" height="60%"></h3>
 
         <p class="footer-links">
             <a href="#section" class="link-1">Home</a>
@@ -179,7 +259,7 @@
             <a href="#section5">Contact Us</a>
         </p>
 
-        <p class="footer-company-name">Blood Donation © 2021</p>
+        <p class="footer-company-name">Blood Donation (LSBB) © 2022</p>
     </div>
 
     <div class="footer-center">
@@ -196,15 +276,15 @@
 
         <div>
             <i class="fa fa-envelope"></i>
-            <p><a href="mailto:rara1999_sh@hotmail.com">rara1999_sh@hotmail.com</a></p>
+            <p><a href="mailto:rara1999_sh@hotmail.com"> LSBB909_jo@hotmail.com</a></p>
         </div>
 
         <div class="footer-icons">
 
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-instagram"></i></a>
-            <a href="#"><i class="fa fa-whatsapp"></i></a>
+            <a href="https://www.facebook.com/LSBB555" target="_blank"><i class="fa fa-facebook"></i></a>
+            <a href="https://www.twitter.com/LSBB69506682" target="_blank"><i class="fa fa-twitter"></i></a>
+            <a href="https://www.instagram.com/lsbb555/" target="_blank"><i class="fa fa-instagram"></i></a>
+            <a href="#"><i class="fa fa-whatsapp" target="_blank"></i></a>
 
         </div>
     </div>
@@ -214,7 +294,8 @@
         <p style="font-size: 30px; text-align: center; font-family: sans-serif;">Contact Us</p>
         <br>
         <div class="containeeer">
-            <form action="">
+            <form action="{{ route('contact') }}" method="post">
+                @csrf
                 <label for="fname">First Name</label>
                 <input type="text" id="fname" name="firstname" placeholder="Your name..">
 
@@ -225,7 +306,7 @@
                 <input type="text" id="email" name="email" placeholder="Your Email..">
 
                 <label for="subject">Message</label>
-                <textarea id="Message" name="Message" placeholder="Write something.." style="height:100px"></textarea>
+                <textarea id="Message" name="message" placeholder="Write something.." style="height:100px"></textarea>
 
                 <div style="text-align: center;"> <input type="submit" value="Submit"> </div>
             </form>
@@ -234,6 +315,73 @@
     </div>
 
 </footer>
+
+<script>
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    // Next/previous controls
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    // Thumbnail image controls
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("dot");
+        if (n > slides.length) {slideIndex = 1}
+        if (n < 1) {slideIndex = slides.length}
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";
+        dots[slideIndex-1].className += " active";
+    }
+
+    var slideIndex = 0;
+    showSlides();
+
+    function showSlides() {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {slideIndex = 1}
+        slides[slideIndex-1].style.display = "block";
+        setTimeout(showSlides, 2000); // Change image every 2 seconds
+    }
+
+
+    //Get the button
+    var mybutton = document.getElementById("myBtn");
+
+    // When the user scrolls down 20px from the top of the document, show the button
+    window.onscroll = function() {scrollFunction()};
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
+        }
+    }
+
+    // When the user clicks on the button, scroll to the top of the document
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>
 
 
 

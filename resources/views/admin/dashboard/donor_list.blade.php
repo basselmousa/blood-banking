@@ -15,6 +15,8 @@
             <th>Date Of Birth</th>
             <th>Blood Group</th>
             <th>Last Donated Date</th>
+            <th>Country</th>
+            <th>City</th>
             <th>Diseases</th>
         </tr>
 
@@ -29,6 +31,8 @@
                 <td>{{ $donor->date_of_birth }}</td>
                 <td>{{ $donor->blood_group }}</td>
                 <td>{{ $donor->last_donation_date }}</td>
+                <td>{{ $donor->country }}</td>
+                <td>{{ $donor->city }}</td>
                 <td>{{ $donor->diseases }}</td>
             </tr>
 

@@ -20,10 +20,13 @@ class CreateDonorsTable extends Migration
             $table->string('email')->unique();
             $table->string('phone_number')->unique();
             $table->string('gender');
+            $table->string('country');
+            $table->string('city');
             $table->date('date_of_birth');
             $table->string('blood_group', 5);
             $table->date('last_donation_date');
             $table->text('diseases');
+            $table->tinyInteger('share');
             $table->timestamps();
         });
     }

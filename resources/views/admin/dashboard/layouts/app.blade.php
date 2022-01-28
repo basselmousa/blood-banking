@@ -10,21 +10,43 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css?family=Merriweather&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
     <link rel="stylesheet" type="text/css" href="{{asset('css/Styles/sstt.css')}}" />
 
 </head>
 <body>
-<div class="header">
-    <img src="{{asset('img/3lives.jpg')}}" width="1535px" height="400 px">
-</div>
-<div class="nav">
-    <ul >
-       @if(! request()->routeIs('admin.home'))
-            <li><a href="{{route('admin.home')}}">Home</a></li>
-       @endif
-        <li><a href="#">LogOut</a></li>
-    </ul>
-</div>
+
+<nav class="navbar navbar-default" >
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="#"><img src="{{asset('img/logo2.png')}}" width="90px" height="90px" style="margin-top: -14px;"></a>
+        </div>
+        <ul class="nav navbar-nav" style="height: 80px; margin-top: 20px; float: right; font-size: 20px;">
+            @if(! request()->routeIs('admin.home'))
+            <li><a href="{{ route('admin.home') }}" onMouseOver="this.style.color='red'"
+                   onMouseOut="this.style.color='rgb(114, 114, 114)'">Home</a></li>
+            @endif
+        <li><a href="{{ route('admin.create-admin') }}" onMouseOver="this.style.color='red'"
+                   onMouseOut="this.style.color='rgb(114, 114, 114)'">Create Admin</a></li>
+            <li><a href="#" onMouseOver="this.style.color='red'"
+                   onMouseOut="this.style.color='rgb(114, 114, 114)'"
+                   onclick="event.preventDefault();
+                    document.getElementById('logout').submit();
+                    " >Logout</a></li>
+                <form id="logout" action="{{ route('admin.logout') }}" method="post" style="display: none">
+                    @csrf
+
+                </form>
+        </ul>
+    </div>
+</nav>
+<br>
+<br>
+
 <br>
 <br>
 
