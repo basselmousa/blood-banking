@@ -24,6 +24,7 @@ trait AddPatient
             'country' => ['required','not_in:0'],
             'city' => ['required','not_in:0'],
             'address' => ['required'],
+            'rhesus_factor' => ['nullable', 'in:+,-'],
         ]);
 
         Patient::create([
@@ -37,6 +38,7 @@ trait AddPatient
             'country' => $request->country,
             'city' => $request->city,
             'address' => $request->address,
+            'rhesus_factor' => $request->rhesus_factor ?? '+',
         ]);
     }
 
@@ -54,7 +56,11 @@ trait AddPatient
             'blood' => ['required','not_in:0'],
             'date' => ['required','before:'.Carbon::today()->subMonths(6)],
             'diseases' => ['required'],
-            'share' => ['required']
+            'share' => ['required'],
+            'weight' => ['nullable', 'numeric', 'min:50'],
+            'height' => ['nullable', 'numeric', 'min:100'],
+            'blood_pressure' => ['nullable', 'string'],
+            'hemoglobin_level' => ['nullable', 'numeric', 'min:8', 'max:20'],
         ]);
 
         Donor::create([
@@ -69,7 +75,13 @@ trait AddPatient
             'blood_group' => $request->blood,
             'last_donation_date' => $request->date,
             'diseases' => $request->diseases,
-            'share' => $request->share
+            'share' => $request->share,
+            'weight' => $request->weight,
+            'height' => $request->height,
+            'blood_pressure' => $request->blood_pressure,
+            'hemoglobin_level' => $request->hemoglobin_level,
+            'last_health_checkup' => now(),
+            'is_deferred' => false,
         ]);
     }
 }

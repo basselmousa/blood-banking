@@ -45,6 +45,15 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth:admi
     Route::get('/delete', [\App\Http\Controllers\AdminController::class , 'delete_donor_or_patient'])->name('delete');
     Route::get('/create-admin', [\App\Http\Controllers\AdminController::class , 'create_admin'])->name('create-admin');
 
+    // Donation Eligibility Routes
+    Route::get('/donation-eligibility/dashboard', [\App\Http\Controllers\DonationEligibilityController::class, 'dashboard'])->name('eligibility.dashboard');
+    Route::get('/donors/{donor}/eligibility', [\App\Http\Controllers\DonationEligibilityController::class, 'checkEligibility'])->name('donors.eligibility');
+    Route::get('/donors/eligible/list', [\App\Http\Controllers\DonationEligibilityController::class, 'listEligible'])->name('donors.eligible-list');
+    Route::get('/donors/deferred/list', [\App\Http\Controllers\DonationEligibilityController::class, 'listDeferred'])->name('donors.deferred-list');
+    Route::post('/donors/{donor}/defer', [\App\Http\Controllers\DonationEligibilityController::class, 'defer'])->name('donors.defer');
+    Route::post('/donors/{donor}/clear-deferral', [\App\Http\Controllers\DonationEligibilityController::class, 'clearDeferral'])->name('donors.clear-deferral');
+    Route::post('/donors/{donor}/record-donation', [\App\Http\Controllers\DonationEligibilityController::class, 'recordDonation'])->name('donors.record-donation');
+    Route::get('/donors/{donor}/stats', [\App\Http\Controllers\DonationEligibilityController::class, 'getDonationStats'])->name('donors.stats');
 
     Route::post('/add/donor', [\App\Http\Controllers\AdminController::class, 'add_donor'])->name('add.donor');
     Route::post('/add/patient', [\App\Http\Controllers\AdminController::class, 'add_patient'])->name('add.patient');

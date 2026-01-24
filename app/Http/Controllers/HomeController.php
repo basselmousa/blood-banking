@@ -7,6 +7,8 @@ use App\Mail\ContactMe;
 use App\Mail\ContactUserForMe;
 use App\Models\Donor;
 use App\Models\Patient;
+use App\Services\DonationEligibilityService;
+use App\Services\DonationRiskAssessmentService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
@@ -14,14 +16,22 @@ class HomeController extends Controller
 {
 
     use AddPatient;
+
+    protected $eligibilityService;
+    protected $riskAssessmentService;
+
     /**
      * Create a new controller instance.
      *
      * @return void
      */
-    public function __construct()
-    {
+    public function __construct(
+        DonationEligibilityService $eligibilityService,
+        DonationRiskAssessmentService $riskAssessmentService
+    ) {
         $this->middleware('auth:web')->except('contact');
+        $this->eligibilityService = $eligibilityService;
+        $this->riskAssessmentService = $riskAssessmentService;
     }
 
     /**
@@ -46,7 +56,9 @@ class HomeController extends Controller
                 'city' => 'required'
             ]);
 
+            // Get donors with eligibility criteria
             $donorsQuery = Donor::where('blood_group', $request->blood)
+                ->active() // Using the new scope for not deferred + within donation gap
                 ->where(function ($query) {
                     $query->whereNull('last_donation_date')
                           ->orWhereDate('last_donation_date', '<=', now()->subMonths(3));
@@ -56,7 +68,21 @@ class HomeController extends Controller
                 $donorsQuery->where('city', $request->city);
             }
 
-            $bloods = $donorsQuery->get();
+            $donors = $donorsQuery->get();
+
+            // Filter by eligibility and add risk assessment
+            $bloods = [];
+            foreach ($donors as $donor) {
+                $eligibility = $this->eligibilityService->isEligible($donor);
+                if ($eligibility['eligible']) {
+                    $bloods[] = [
+                        'donor' => $donor,
+                        'eligible' => true,
+                        'next_eligible_date' => $eligibility['next_eligible_date'],
+                        'risk_level' => $eligibility['risk_level']
+                    ];
+                }
+            }
         }
         return view('search_blood', compact('bloods'));
     }
@@ -99,3 +125,4 @@ class HomeController extends Controller
     }
 
 }
+
