@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Models\Traits\BelongsToTenant;
+use App\Models\Traits\HasRolesAndPermissions;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -11,7 +13,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, BelongsToTenant, HasRolesAndPermissions;
     protected $table = 'bloods';
 
     /**
@@ -23,6 +25,7 @@ class User extends Authenticatable
        'nid' => 0
     ];
     protected $fillable = [
+        'tenant_id',
         'username',
         'email',
         'password',
