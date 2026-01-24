@@ -42,15 +42,12 @@ class DonationEligibilityController extends Controller
     /**
      * List all eligible donors for a blood group
      */
-    public function listEligible(Request $request)
+    public function listEligible(\App\Http\Requests\ListEligibleDonorsRequest $request)
     {
-        $request->validate([
-            'blood_group' => 'required|string',
-            'city' => 'nullable|string'
-        ]);
+        $validated = $request->validated();
 
-        $donors = Donor::byBloodGroup($request->blood_group)
-            ->byCity($request->city ?? 'all')
+        $donors = Donor::byBloodGroup($validated['blood_group'])
+            ->byCity($validated['city'] ?? null)
             ->active()
             ->get();
 
@@ -85,14 +82,9 @@ class DonationEligibilityController extends Controller
     /**
      * Create a deferral for a donor
      */
-    public function defer(Request $request, Donor $donor)
+    public function defer(\App\Http\Requests\DeferDonorRequest $request, Donor $donor)
     {
-        $request->validate([
-            'reason' => 'required|string',
-            'description' => 'required|string',
-            'deferral_type' => 'required|in:temporary,permanent,conditional',
-            'eligible_after' => 'nullable|date|after:today'
-        ]);
+        $validated = $request->validated();
 
         $eligibleAfter = null;
         if ($request->eligible_after) {
@@ -103,10 +95,10 @@ class DonationEligibilityController extends Controller
 
         $this->eligibilityService->deferDonor(
             $donor,
-            $request->reason,
-            $request->description,
+            $validated['reason'],
+            $validated['description'],
             $eligibleAfter,
-            $request->deferral_type
+            $validated['deferral_type']
         );
 
         return redirect()->route('admin.donors')
@@ -127,39 +119,28 @@ class DonationEligibilityController extends Controller
     /**
      * Record a donation
      */
-    public function recordDonation(Request $request, Donor $donor)
+    public function recordDonation(\App\Http\Requests\RecordDonationRequest $request, Donor $donor)
     {
-        $request->validate([
-            'donation_date' => 'required|date',
-            'blood_volume' => 'nullable|integer|min:100|max:500',
-            'type' => 'required|in:whole_blood,plasma,platelets,red_cells',
-            'status' => 'required|in:completed,rejected,deferred,cancelled',
-            'rejection_reason' => 'nullable|string',
-            'hemoglobin_before' => 'nullable|numeric',
-            'notes' => 'nullable|string'
-        ]);
+        $validated = $request->validated();
 
-        $donationDate = Carbon::parse($request->donation_date);
+        $donationDate = Carbon::parse($validated['donation_date']);
         $nextEligibleDate = $donationDate->addMonths(3);
 
         $donation = DonationRecord::create([
             'donor_id' => $donor->id,
             'donation_date' => $donationDate,
-            'blood_volume' => $request->blood_volume ?? 450,
-            'type' => $request->type,
-            'status' => $request->status,
-            'rejection_reason' => $request->rejection_reason,
+            'blood_volume' => $validated['blood_volume'] ?? 450,
+            'type' => $validated['type'],
+            'status' => $validated['status'],
+            'rejection_reason' => $validated['rejection_reason'] ?? null,
             'next_eligible_date' => $nextEligibleDate,
-            'hemoglobin_before' => $request->hemoglobin_before,
-            'notes' => $request->notes
+            'hemoglobin_before' => $validated['hemoglobin_before'] ?? null,
+            'notes' => $validated['notes'] ?? null
         ]);
 
         // Update donor's last donation date if completed
-        if ($request->status === 'completed') {
-            $donor->update([
-                'last_donation_date' => $donationDate,
-                'last_health_checkup' => now()
-            ]);
+        if ($validated['status'] === 'completed') {
+            $donor->update(['last_donation_date' => $donationDate]);
         }
 
         return redirect()->route('admin.donors')

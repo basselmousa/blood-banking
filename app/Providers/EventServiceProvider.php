@@ -6,6 +6,10 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
+use App\Events\DonorDeferredEvent;
+use App\Events\DonationRecordedEvent;
+use App\Listeners\SendDonorDeferralNotification;
+use App\Listeners\SendDonationThankYouNotification;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -17,6 +21,12 @@ class EventServiceProvider extends ServiceProvider
     protected $listen = [
         Registered::class => [
             SendEmailVerificationNotification::class,
+        ],
+        DonorDeferredEvent::class => [
+            SendDonorDeferralNotification::class,
+        ],
+        DonationRecordedEvent::class => [
+            SendDonationThankYouNotification::class,
         ],
     ];
 
