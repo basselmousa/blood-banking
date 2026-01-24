@@ -18,6 +18,7 @@
             <th>Country</th>
             <th>City</th>
             <th>Diseases</th>
+            <th>Actions</th>
         </tr>
 
         @foreach($donors as $donor)
@@ -34,6 +35,12 @@
                 <td>{{ $donor->country }}</td>
                 <td>{{ $donor->city }}</td>
                 <td>{{ $donor->diseases }}</td>
+                <td>
+                    <form action="{{ route('admin.donors.update-donation-date', ['donor' => $donor->id]) }}" method="POST" style="display: inline-block">
+                        @csrf
+                        <button type="submit" class="btn btn-primary">Update Last Donation</button>
+                    </form>
+                </td>
             </tr>
 
         @endforeach

@@ -94,6 +94,12 @@ class AdminController extends Controller
         return redirect()->route('admin.home');
     }
 
+    public function update_last_donation_date(Request $request, Donor $donor)
+    {
+        $donor->update(['last_donation_date' => now()]);
+        return redirect()->route('admin.donors');
+    }
+
 
     public function create_admin()
     {

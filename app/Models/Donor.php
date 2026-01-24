@@ -9,4 +9,5 @@ class Donor extends Model
 {
     use HasFactory;
     protected $guarded = [];
+    protected $dates = ['last_donation_date'];
 }

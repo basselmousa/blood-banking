@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class RenameTable extends Migration
+class AddAnotherPhoneNumberToPatient extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class RenameTable extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->rename("bloods");
-            $table->string('nid');
+        Schema::table('patients', function (Blueprint $table) {
+            $table->string('phone_number_2')->nullable();
         });
     }
 
@@ -26,9 +25,8 @@ class RenameTable extends Migration
      */
     public function down()
     {
-        Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('nid');
-            $table->rename('users');
+        Schema::table('patients', function (Blueprint $table) {
+            $table->dropColumn('phone_number_2');
         });
     }
 }

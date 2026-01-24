@@ -57,7 +57,7 @@ class RegisterController extends Controller
             'username' => ['required', 'string', 'max:255'],
             'full_name' => ['required', 'string', 'max:255'],
             'phone_number' => ['required', 'string', 'max:10'],
-            'signup_email' => ['required', 'string', 'email', 'max:255', 'unique:users,email'],
+            'signup_email' => ['required', 'string', 'email', 'max:255', 'unique:bloods,email'],
             'signup_password' => ['required', 'string', 'min:8', 'confirmed'],
         ],[
             'signup_email.unique' => 'This email has already been taken.',

@@ -45,12 +45,18 @@ class HomeController extends Controller
                 'blood' => 'required',
                 'city' => 'required'
             ]);
-            if ($request->city == 'all'){
-                $bloods = Donor::all()->where('blood_group' , '=', $request->blood);
+
+            $donorsQuery = Donor::where('blood_group', $request->blood)
+                ->where(function ($query) {
+                    $query->whereNull('last_donation_date')
+                          ->orWhereDate('last_donation_date', '<=', now()->subMonths(3));
+                });
+
+            if ($request->city != 'all'){
+                $donorsQuery->where('city', $request->city);
             }
-            else{
-                $bloods = Donor::all()->where('blood_group' , '=', $request->blood)->where('city', '=', $request->city);
-            }
+
+            $bloods = $donorsQuery->get();
         }
         return view('search_blood', compact('bloods'));
     }

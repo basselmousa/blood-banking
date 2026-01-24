@@ -29,9 +29,7 @@ class AdminAuthentication extends Controller
         if (Auth::guard('admin')->attempt(['email' => $request->email, 'password' => $request->password])) {
             return redirect()->route('admin.home');
         } else {
-            return back()->withErrors([
-                'email', 'does not exist or password invalid',
-            ]);
+           throw $this->sendFailedLoginResponse($request);
         }
     }
 

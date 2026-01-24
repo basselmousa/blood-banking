@@ -37,6 +37,7 @@ Route::post('/admin/login', [App\Http\Controllers\AdminAuthentication::class, 'l
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => ['auth:admin']], function (){
     Route::get('/', [\App\Http\Controllers\AdminController::class , 'index'])->name('home');
     Route::get('/donors', [\App\Http\Controllers\AdminController::class , 'donor_list'])->name('donors');
+    Route::post('/donors/{donor}/update-donation-date', [\App\Http\Controllers\AdminController::class, 'update_last_donation_date'])->name('donors.update-donation-date');
     Route::get('/users', [\App\Http\Controllers\AdminController::class , 'user_list'])->name('users');
     Route::get('/add', [\App\Http\Controllers\AdminController::class , 'add_donor_or_patient'])->name('add');
     Route::get('/patients', [\App\Http\Controllers\AdminController::class , 'patient_list'])->name('patients');
